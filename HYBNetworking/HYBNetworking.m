@@ -348,7 +348,7 @@ static inline NSString *cachePath() {
       }
     }
     
-    session = [manager GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+      session = [manager GET:url parameters:params headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
       if (progress) {
         progress(downloadProgress.completedUnitCount, downloadProgress.totalUnitCount);
       }
@@ -435,7 +435,7 @@ static inline NSString *cachePath() {
       }
     }
     
-    session = [manager POST:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+    session = [manager POST:url parameters:params headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
       if (progress) {
         progress(downloadProgress.completedUnitCount, downloadProgress.totalUnitCount);
       }
@@ -579,7 +579,7 @@ static inline NSString *cachePath() {
   NSString *absolute = [self absoluteUrlWithPath:url];
   
   AFHTTPSessionManager *manager = [self manager];
-  HYBURLSessionTask *session = [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+  HYBURLSessionTask *session = [manager POST:url parameters:parameters headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     NSData *imageData = UIImageJPEGRepresentation(image, 1);
     
     NSString *imageFileName = filename;
